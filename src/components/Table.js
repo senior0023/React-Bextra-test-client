@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTable, useFilters, useSortBy, useGropuBy, useGroupBy, useExpanded } from 'react-table';
 // get our fontawesome imports
-import { faAngleDoubleDown, faAngleDoubleRight, faAngleDown, faAngleRight, faBars, faCheck, faCheckCircle, faCheckDouble, faCheckSquare, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleDown, faAngleDoubleRight, faAngleDown, faAngleRight, faBars, faCheck, faCheckCircle, faCheckDouble, faCheckSquare, faHome, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Table({ columns, data }) {
@@ -37,12 +37,15 @@ export default function Table({ columns, data }) {
 
     return (
         <div className="table-container">
-            <input
-                value={ filterInput }
-                onChange={handleFilterChange}
-                placeholder={"Search by name..."}
-                className="table-filter"
-            />
+            <div className="filter-container">
+                <input
+                    value={ filterInput }
+                    onChange={handleFilterChange}
+                    placeholder={"Search by name..."}
+                    className="table-filter"
+                />
+                <span className="table-filter-addon"><FontAwesomeIcon icon={faSearch}/></span>
+            </div>
             <table {...getTableProps()} className="styled-table">
                 <thead>
                     {

@@ -25,9 +25,19 @@
   height: 100px;
 }
 
+.App-header h2 {
+  color: #61dafb;
+  display: inline-flex;
+  align-items: center;
+}
+
 .App-body {
   display: flex;
   flex-direction: column;
+}
+
+input:focus{
+  outline: none;
 }
 
 .table-container {
@@ -35,14 +45,27 @@
   flex-direction: column;
 }
 
-.table-filter {
-  width: 300px;
-  position: relative;
-  margin: 0 0 5px 2.5vw;
+.filter-container {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  right: 2.5vw;
   border-radius: 20px;
   border: 2px solid #148eef;
-  padding: 5px;
+}
+
+.table-filter {
+  flex: 1 1;
+  width: 200px;
+  margin: 0 0 0 20px;
+  border: none;
   background-color: white;
+  padding: 5px;
+}
+
+.table-filter-addon {
+  padding: 5px;
+  color: #148eef;
 }
 
 .styled-table {
@@ -52,7 +75,6 @@
   margin: 0 2.5vw;
   font-size: 0.9em;
   font-family: sans-serif;
-  min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -90,5 +112,27 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .filter-container {
+    width: 20vw;
+    right: 20px;
+  }
+
+  .table-filter {
+    width: 10vw;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .filter-container {
+    width: 20vw;
+    right: 20px;
+  }
+
+  .table-filter {
+    width: 5vw;
   }
 }
