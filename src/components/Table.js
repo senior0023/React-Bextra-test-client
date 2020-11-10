@@ -1,6 +1,9 @@
 // Table.js
 import React, { useState, useEffect } from 'react';
 import { useTable, useFilters, useSortBy, useGropuBy, useGroupBy, useExpanded } from 'react-table';
+// get our fontawesome imports
+import { faAngleDoubleDown, faAngleDoubleRight, faAngleDown, faAngleRight, faBars, faCheck, faCheckCircle, faCheckDouble, faCheckSquare, faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Table({ columns, data }) {
     // Use the useTable Hook to send the columns and data to build the table
@@ -47,16 +50,24 @@ export default function Table({ columns, data }) {
                             <tr {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map(column => (
                                     <th 
-                                        {...column.getHeaderProps(column.getSortByToggleProps())}
-                                        className={
-                                            column.isSorted ? (column.isSortedDesc ? "sort-desc" : "sort-asc") : ""
-                                        }
+                                        {...column.getHeaderProps()}
+                                        /* Uncomment below code to add 'sort'
+                                            {...column.getHeaderProps(column.getSortByToggleProps())}
+                                                className={
+                                                    column.isSorted ? (column.isSortedDesc ? "sort-desc" : "sort-asc") : ""
+                                            }
+                                        */
                                     >
                                         { column.render("Header") }
+                                        {' '}
                                         {
                                             column.canGroupBy ? (
                                                 <span {...column.getGroupByToggleProps()}>
-                                                    {column.isGrouped ? '🛑 ' : '👊 '}
+                                                    {
+                                                        column.isGrouped 
+                                                            ? <FontAwesomeIcon icon={faCheckCircle} /> 
+                                                            : <FontAwesomeIcon icon={faBars} />
+                                                    }
                                                 </span>
                                             ) : null
                                         }
@@ -78,21 +89,22 @@ export default function Table({ columns, data }) {
                                                 {...cell.getCellProps()}
                                                 style={{
                                                     background: cell.isGrouped
-                                                        ? '#0aff0082'
-                                                        : cell.isAggregated
-                                                        ? '#ffa50078'
-                                                        : cell.isPlaceholder
-                                                        ? '#ff000042'
+                                                        ? 'rgba(186,187, 186,.28)'
                                                         : 'white',
                                                 }}
                                             >
                                                 {cell.isGrouped ? (
                                                     // If it's a grouped cell, add an expander and row count
                                                     <>
-                                                    <span {...row.getToggleRowExpandedProps()}>
-                                                        {row.isExpanded ? 'v' : '>'}
-                                                    </span>{' '}
                                                     {cell.render('Cell')} ({row.subRows.length})
+                                                    {' '}
+                                                    <span {...row.getToggleRowExpandedProps()}>
+                                                        { 
+                                                            row.isExpanded 
+                                                                ? <FontAwesomeIcon icon={faAngleDown} /> 
+                                                                : <FontAwesomeIcon icon={faAngleRight} /> 
+                                                        }
+                                                    </span>
                                                     </>
                                                 ) : cell.isAggregated ? (
                                                     // If the cell is aggregated, use the Aggregated

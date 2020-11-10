@@ -46,6 +46,7 @@
 }
 
 .styled-table {
+  cursor: pointer;
   border-collapse: collapse;
   width: 95vw;
   margin: 0 2.5vw;
