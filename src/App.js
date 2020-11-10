@@ -18,11 +18,23 @@ function App() {
     })();
   }, []);
 
+  // set the columns of Table
+  const columns = [
+    { Header: "Name", accessor: "name" },
+    { Header: "Company Domain", accessor: "company_domain" },
+    { Header: "Industry Sector", accessor: "industry_sector" },
+    { Header: "City", accessor: "city" },
+    { Header: "Country", accessor: "country" }
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <div className="App-body">
+        <Table columns={columns} data={data} />
+      </div>
     </div>
   );
 }
