@@ -30,9 +30,25 @@
   flex-direction: column;
 }
 
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-filter {
+  width: 300px;
+  position: relative;
+  margin: 0 0 5px 2.5vw;
+  border-radius: 20px;
+  border: 2px solid #148eef;
+  padding: 5px;
+  background-color: white;
+}
+
 .styled-table {
   border-collapse: collapse;
-  margin: 0 25px;
+  width: 95vw;
+  margin: 0 2.5vw;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
