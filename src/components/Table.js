@@ -1,8 +1,8 @@
 // Table.js
-import React, { useState, useEffect } from 'react';
-import { useTable, useFilters, useSortBy, useGropuBy, useGroupBy, useExpanded } from 'react-table';
+import React, { useState } from 'react';
+import { useTable, useFilters, useSortBy, useGroupBy, useExpanded } from 'react-table';
 // get our fontawesome imports
-import { faAngleDoubleDown, faAngleDoubleRight, faAngleDown, faAngleRight, faBars, faCheck, faCheckCircle, faCheckDouble, faCheckSquare, faHome, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleRight, faBars, faCheckCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Table({ columns, data }) {
@@ -18,7 +18,7 @@ export default function Table({ columns, data }) {
     } = useTable(
         {
             columns, 
-            data
+            data,
         },
         useFilters,
         useGroupBy,

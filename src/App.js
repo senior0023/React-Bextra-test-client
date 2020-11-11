@@ -6,6 +6,15 @@ import Axios from 'axios';
 
 function App() {
 
+  // set the columns of Table
+  const columns = [
+    { Header: "Name", accessor: "name" },
+    { Header: "Company Domain", accessor: "company_domain" },
+    { Header: "Industry Sector", accessor: "industry_sector" },
+    { Header: "City", accessor: "city" },
+    { Header: "Country", accessor: "country" }
+  ];
+
   // data state to store the Accounts data. Its initial value is an empty array
   const [ data, setData ] = useState([]);
 
@@ -17,15 +26,6 @@ function App() {
       setData(result.data);
     })();
   }, []);
-
-  // set the columns of Table
-  const columns = [
-    { Header: "Name", accessor: "name" },
-    { Header: "Company Domain", accessor: "company_domain" },
-    { Header: "Industry Sector", accessor: "industry_sector" },
-    { Header: "City", accessor: "city" },
-    { Header: "Country", accessor: "country" }
-  ];
 
   return (
     <div className="App">
