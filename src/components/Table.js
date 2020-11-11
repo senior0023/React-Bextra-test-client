@@ -1,5 +1,5 @@
 // Table.js
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTable, useFilters, useSortBy, useGroupBy, useExpanded } from 'react-table';
 // get our fontawesome imports
 import { faAngleDown, faAngleRight, faBars, faCheckCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -14,17 +14,29 @@ export default function Table({ columns, data }) {
         rows, // rows for the table based on the data passed
         prepareRow, // Prepare the row (this function needs to be called for each row before getting the row props)
         setFilter, 
-        state: { groupBy, expanded }
+        state: { groupBy, expanded },
+        toggleAllRowsExpanded,
+        isAllRowsExpanded,
+        expandAllSubComponents
     } = useTable(
         {
             columns, 
             data,
+            autoResetExpanded: false,
         },
         useFilters,
         useGroupBy,
         useSortBy,
         useExpanded
     );
+    
+    useMemo(() => toggleAllRowsExpanded(true), [isAllRowsExpanded]);
+    // useEffect(() => {
+    //     toggleAllRowsExpanded(true);
+    // }, [isAllRowsExpanded]);
+    // useEffect(() => {
+    //     toggleAllRowsExpanded(expandAllSubComponents);
+    //   }, [expandAllSubComponents, toggleAllRowsExpanded]); 
 
     const [ filterInput, setFilterInput ] = useState("");
 
@@ -99,15 +111,15 @@ export default function Table({ columns, data }) {
                                                 {cell.isGrouped ? (
                                                     // If it's a grouped cell, add an expander and row count
                                                     <>
-                                                    {cell.render('Cell')} ({row.subRows.length})
-                                                    {' '}
+                                                    {cell.render('Cell')} 
+                                                    {/* {' '}
                                                     <span {...row.getToggleRowExpandedProps()}>
                                                         { 
                                                             row.isExpanded 
                                                                 ? <FontAwesomeIcon icon={faAngleDown} /> 
                                                                 : <FontAwesomeIcon icon={faAngleRight} /> 
                                                         }
-                                                    </span>
+                                                    </span> */}
                                                     </>
                                                 ) : cell.isAggregated ? (
                                                     // If the cell is aggregated, use the Aggregated

@@ -15,6 +15,69 @@ function App() {
     { Header: "Country", accessor: "country" }
   ];
 
+  // const columns = React.useMemo(
+  //   () => [
+  //     {
+  //       // Build our expander column
+  //       id: "expander", // Make sure it has an ID
+  //       Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
+  //         <span {...getToggleAllRowsExpandedProps()}>
+  //           {isAllRowsExpanded ? "👇" : "👉"}
+  //         </span>
+  //       ),
+  //       Cell: ({ row, rows, toggleRowExpanded }) =>
+  //         // Use the row.canExpand and row.getToggleRowExpandedProps prop getter
+  //         // to build the toggle for expanding a row
+  //         row.canExpand ? (
+  //           <span
+  //             {...row.getToggleRowExpandedProps({
+  //               style: {
+  //                 // We can even use the row.depth property
+  //                 // and paddingLeft to indicate the depth
+  //                 // of the row
+  //                 paddingLeft: `${row.depth * 2}rem`
+  //               },
+  //               onClick: () => {
+  //                 const expandedRow = rows.find(row => row.isExpanded);
+
+  //                 if (expandedRow) {
+  //                   const isSubItemOfRow = Boolean(
+  //                     expandedRow && row.id.split(".")[0] === expandedRow.id
+  //                   );
+
+  //                   if (isSubItemOfRow) {
+  //                     const expandedSubItem = expandedRow.subRows.find(
+  //                       subRow => subRow.isExpanded
+  //                     );
+
+  //                     if (expandedSubItem) {
+  //                       const isClickedOnExpandedSubItem =
+  //                         expandedSubItem.id === row.id;
+  //                       if (!isClickedOnExpandedSubItem) {
+  //                         toggleRowExpanded(expandedSubItem.id, false);
+  //                       }
+  //                     }
+  //                   } else {
+  //                     toggleRowExpanded(expandedRow.id, false);
+  //                   }
+  //                 }
+  //                 row.toggleRowExpanded();
+  //               }
+  //             })}
+  //           >
+  //             {row.isExpanded ? "👇" : "👉"}
+  //           </span>
+  //         ) : null
+  //     },
+  //     { Header: "Name", accessor: "name" },
+  //     { Header: "Company Domain", accessor: "company_domain" },
+  //     { Header: "Industry Sector", accessor: "industry_sector" },
+  //     { Header: "City", accessor: "city" },
+  //     { Header: "Country", accessor: "country" }
+  //   ],
+  //   []
+  // );
+
   // data state to store the Accounts data. Its initial value is an empty array
   const [ data, setData ] = useState([]);
 
